@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>
+        The Weather
+    </title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="style.css" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
+
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+        crossorigin="anonymous"></script>
+    <script src="script.js"></script>
+</head>
+
+<body>
+    <div id="card">
+        <div id="location">
+            Your Location
+        </div>
+        <div id="icon">
+            <div class="sun" id="circle">
+            </div>
+            <div class="cloud" id="c1">
+                <div class='drops' id='d1'></div>
+                <div class='drops' id='d2'></div>
+                <div class='drops' id='d3'></div>
+            </div>
+            <div class="cloud" id="c2">
+                <div class='drops' id='d1'></div>
+                <div class='drops' id='d2'></div>
+                <div class='drops' id='d3'></div>
+            </div>
+            <div class="cloud" id="c3">
+                <div class='drops' id='d1'></div>
+                <div class='drops' id='d2'></div>
+                <div class='drops' id='d3'></div>
+            </div>
+
+            <div id="weather-condition">
+                condition
+            </div>
+            <div id="temperature">
+                38&deg;
+            </div>
+        </div>
+    </div>
+    <div id="inputs">
+        <select name="conditions">
+            <option selected="selected" disabled="disabled">Select a condition</option>
+            <option value="current">Current Weather</option>
+            <option value="01d">Clear Skys</option>
+            <option value="02d">Few Clouds</option>
+            <option value="03d">Scattered Clouds</option>
+            <option value="04d">Broken Clouds</option>
+            <option value="09d">Shower Rain</option>
+            <option value="10d">Rain</option>
+            <option value="11d">Thunderstorm</option>
+            <option value="13d">Snow</option>
+            <option value="50d">Mist</option>
+        </select>
+    </div>
+</body>
+
+</html>
