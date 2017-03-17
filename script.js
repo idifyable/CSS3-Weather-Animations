@@ -78,36 +78,10 @@ var exampleCall = {
 
 $(document).ready(function () {
 
-    //Geo-Locating user coordinates
-
-    if ("geolocation" in navigator) {
-        //If available
-        navigator.geolocation.getCurrentPosition(function (position) {
-            setCoords(position.coords.latitude, position.coords.longitude);
-        });
-    } else {
-        //If not available
-        console.log("Geo-Location Failed");
-    }
-
-
     //Event handlers
     $(".drops").css("visibility", "hidden");
     $(".drops").css("opacity", "0");
 
-    $("#convert").click(function () {
-        if (preferredScale == "farenheit") {
-            perferredScale = "celcius";
-            convertedTemperature = convertKToString(curTemperature, preferredScale);
-            $("#temperature").text(tempString);
-
-        } else if (preferredScale == "celcius") {
-            perferredScale = "farenheit";
-            convertedTemperature = convertKToString(curTemperature, preferredScale);
-
-
-        }
-    });
     $("select").change(function () {
         var selectedVal = $(this).find(":selected").val();
         var selectedText = $(this).find(":selected").text();
@@ -119,16 +93,6 @@ $(document).ready(function () {
         }
     });
 });
-
-
-
-// Sets coordinate variables
-function setCoords(lat, long) {
-    latitude = lat;
-    longitude = long;
-    getWeatherInfo();
-    console.log("Coordinates set: " + longitude + " , " + latitude);
-}
 
 
 
@@ -202,43 +166,9 @@ function setWeatherIcon(icon) {
     }
 }
 
-// Pulls current weather data
-function getWeatherInfo() {
-    link = "http://api.openweathermap.org/data/2.5/weather?lat=" + latitude + "&lon=" + longitude + "&APPID=4b5a9d94fe30dee57597a61a5b7ccf07" + "&callback=?";
-    $.getJSON(link,
-        function (data) {
-            publicData = data;
-            setCurrent(publicData);
-        }
-    );
-}
-
-function convertKToString(tempK, preferred) {
-    if (preferred == "celcius") {
-        tempString = Math.round(tempK - 273.15) + " °C";
-        return Math.round(tempK - 273.15);
-    } else if (preferred == "farenheit") {
-        tempString = Math.round(tempK * (9 / 5) - 459.67) + " °F";
-    }
-    $("#temperature").text(tempString);
-}
-
 function setWeatherCondition(condition) {
     $("#weather-condition").text(condition);
 }
-
-function setCurrent(jsonData) {
-    curCondition = jsonData.weather[0].description;
-    curTemperature = jsonData.main.temp;
-    curIcon = jsonData.weather[0].icon;
-    curLocation = jsonData.name;
-    convertedTemperature = convertKToString(curTemperature, preferredScale);
-    $("#location").text(curLocation);
-    $("#weather-condition").text(curCondition);
-    $("#temperature").text(tempString);
-    setWeatherIcon(curIcon);
-}
-
 
 function sun(on) {
     if (on) {
