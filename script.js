@@ -1,19 +1,10 @@
 var latitude = 0;
 var longitude = 0;
 
-var curTemperature;
 var curCondition;
 var curIcon;
-var curLocation;
 
-var publicData;
-var link;
-
-var convertedTemperature;
-var tempString = "";
-var preferredScale = "farenheit";
-
-//Icon : Weather condition
+//Icon : Weather condition  <=== Based off of 
 var weather = {
     "01d": "Clear Sky",
     "01n": "Clear Sky",
@@ -34,47 +25,6 @@ var weather = {
     "50d": "Mist",
     "50n": "Mist"
 };
-
-var exampleCall = {
-    "coord": {
-        "lon": -0.13,
-        "lat": 51.51
-    },
-    "weather": [{
-        "id": 521,
-        "main": "Rain",
-        "description": "shower rain",
-        "icon": "09n"
-    }],
-    "base": "stations",
-    "main": {
-        "temp": 280.89,
-        "pressure": 989,
-        "humidity": 87,
-        "temp_min": 279.15,
-        "temp_max": 283.15
-    },
-    "visibility": 10000,
-    "wind": {
-        "speed": 4.1,
-        "deg": 240
-    },
-    "clouds": {
-        "all": 75
-    },
-    "dt": 1488652440,
-    "sys": {
-        "type": 1,
-        "id": 5168,
-        "message": 0.1883,
-        "country": "GB",
-        "sunrise": 1488609430,
-        "sunset": 1488649663
-    },
-    "id": 2643743,
-    "name": "London",
-    "cod": 200
-}
 
 $(document).ready(function () {
 
@@ -145,7 +95,7 @@ function setWeatherIcon(icon) {
         case "11d":
             sun(false);
             clouds(3);
-            precipitate("rain");
+            precipitate("rain", .5);
             lightning(true);
             break;
         case "13n":
@@ -170,6 +120,7 @@ function setWeatherCondition(condition) {
     $("#weather-condition").text(condition);
 }
 
+    // Handles sun
 function sun(on) {
     if (on) {
         $("#circle").css("visibility", "visible");
@@ -189,6 +140,7 @@ function sun(on) {
     }
 }
 
+    // Handles clouds
 function clouds(numberOfClouds) {
     switch (numberOfClouds) {
         case 0:
@@ -233,6 +185,7 @@ function clouds(numberOfClouds) {
 
 }
 
+    // Handles precipitate
 function precipitate(type, speed) {
     if (type == "rain") {
         $(".drops").removeClass("snow");
@@ -256,6 +209,7 @@ function precipitate(type, speed) {
     }
 }
 
+    // Handles lightning
 function lightning(on) {
     if (on) {
         $("#c1").css("animation", "shake 2s alternate infinite ease-in-out, lightning 2.5s infinite ease-in-out");
